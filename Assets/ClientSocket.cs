@@ -11,9 +11,8 @@ public class ClientSocket : MonoBehaviour
     public NetworkStream theStream;
     StreamWriter theWriter;
     StreamReader theReader;
-    public String Host = "INSERT the public IP of router or Local IP of Arduino";
+    public String Host = "192.168.17.157";
     public Int32 Port = 5001;
-    public bool lightStatus;
 
     void Start()
     {
@@ -27,15 +26,14 @@ public class ClientSocket : MonoBehaviour
             string recievedData = readSocket();       // write it to a string
 
             if (recievedData == "Light on")
-            {           // compare that string and adjust the current light status accordingly
-                lightStatus = true;
+            {
+                Debug.Log("Received message from ESP32: Light is on");
             }
 
             if (recievedData == "Light off")
             {
-                lightStatus = false;
+                Debug.Log("Received message from ESP32: Light is off");
             }
-
         }
     }
 
